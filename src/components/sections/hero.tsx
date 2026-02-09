@@ -31,9 +31,9 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="mx-auto max-w-4xl text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
         >
-          Hire freelancers.{" "}
+          Hire smarter.{" "}
           <span className="bg-gradient-to-r from-primary via-purple-500 to-violet-600 bg-clip-text text-transparent">
-            Screened for your exact job.
+          Get discovered faster.
           </span>
         </motion.h1>
 

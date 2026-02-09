@@ -1,19 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
-// In-memory store for development. Replace with a database in production.
-const waitlist: { email: string; role: string; joinedAt: string }[] = [];
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
+);
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { email, role } = body;
+    const { email, role } = await request.json();
 
-    // Validate email
     if (!email || typeof email !== "string") {
-      return NextResponse.json(
-        { error: "Email is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,44 +22,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate role
     const validRoles = ["client", "freelancer", "both"];
-    if (!role || !validRoles.includes(role)) {
+    if (!validRoles.includes(role)) {
       return NextResponse.json(
         { error: "Please select a valid role" },
         { status: 400 }
       );
     }
 
-    // Check for duplicate
-    const exists = waitlist.find(
-      (entry) => entry.email.toLowerCase() === email.toLowerCase()
-    );
-    if (exists) {
-      return NextResponse.json(
-        { error: "This email is already on the waitlist" },
-        { status: 409 }
-      );
+    const { error } = await supabase.from("waitlist").insert([
+      {
+        email: email.toLowerCase(),
+        role,
+      },
+    ]);
+
+    if (error) {
+      if (error.code === "23505") {
+        return NextResponse.json(
+          { error: "This email is already on the waitlist" },
+          { status: 409 }
+        );
+      }
+
+      throw error;
     }
-
-    // Store entry
-    waitlist.push({
-      email: email.toLowerCase(),
-      role,
-      joinedAt: new Date().toISOString(),
-    });
-
-    console.log(`[Waitlist] New signup: ${email} (${role})`);
-    console.log(`[Waitlist] Total entries: ${waitlist.length}`);
 
     return NextResponse.json(
       { message: "Successfully joined the waitlist!" },
       { status: 201 }
     );
-  } catch {
+  } catch (err) {
     return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
+      { error: "Something went wrong" },
+      { status: 500 }
     );
   }
 }
