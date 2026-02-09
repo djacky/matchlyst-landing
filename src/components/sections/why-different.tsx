@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { FadeIn } from "@/components/animated/motion-wrapper";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 /* ------------------------------------------------------------------ */
 /*  Animation variants                                                 */
@@ -55,9 +56,10 @@ interface ProcessStepProps {
   step: number;
   icon: ReactNode;
   title: string;
-  accent: string; // tailwind color token like "blue" | "violet" | "amber"
+  accent: string;
   children: ReactNode;
   isLast?: boolean;
+  stepLabel: string;
 }
 
 function ProcessStep({
@@ -67,6 +69,7 @@ function ProcessStep({
   accent,
   children,
   isLast = false,
+  stepLabel,
 }: ProcessStepProps) {
   const accentMap: Record<string, { bg: string; text: string; ring: string; dot: string }> = {
     blue:   { bg: "bg-blue-500/10",   text: "text-blue-600",   ring: "ring-blue-500/20",   dot: "bg-blue-500" },
@@ -115,7 +118,7 @@ function ProcessStep({
       >
         <div className="mb-1 flex items-center gap-2">
           <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50">
-            Step {step}
+            {stepLabel} {step}
           </span>
         </div>
         <h4 className="text-sm font-semibold tracking-tight">{title}</h4>
@@ -130,15 +133,16 @@ function ProcessStep({
 /* ------------------------------------------------------------------ */
 
 function MockJobPost() {
+  const t = useTranslations("whyDifferent");
   return (
     <div className="space-y-2 text-xs">
       <div className="flex items-center justify-between">
-        <span className="font-medium">Senior React Developer</span>
+        <span className="font-medium">{t("mockJobTitle")}</span>
         <Users className="h-3 w-3 text-blue-500" />
       </div>
       <div className="flex gap-1.5">
-        <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] text-blue-600">Remote</span>
-        <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] text-blue-600">$80-120/hr</span>
+        <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] text-blue-600">{t("mockRemote")}</span>
+        <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] text-blue-600">{t("mockRate")}</span>
       </div>
       <div className="h-1 w-full overflow-hidden rounded-full bg-muted">
         <motion.div
@@ -154,12 +158,13 @@ function MockJobPost() {
 }
 
 function MockAIScreening() {
+  const t = useTranslations("whyDifferent");
   return (
     <div className="space-y-2 text-xs">
       <div className="flex items-center gap-1.5">
         <Sparkles className="h-3 w-3 text-violet-500" />
         <span className="text-[10px] font-medium text-violet-600">
-          AI generating 5 tailored questions...
+          {t("mockAIGenerating")}
         </span>
       </div>
       {["Performance optimization", "State management", "System design"].map((q, i) => (
@@ -216,6 +221,7 @@ function MockRankedResults() {
 }
 
 function MockJobMatch() {
+  const t = useTranslations("whyDifferent");
   return (
     <div className="space-y-2 text-xs">
       <motion.div
@@ -229,8 +235,8 @@ function MockJobMatch() {
           <BadgeCheck className="h-3 w-3 text-emerald-600" />
         </div>
         <div className="flex-1">
-          <span className="font-medium">New match: Senior React Developer</span>
-          <p className="text-[10px] text-muted-foreground">94% skill match</p>
+          <span className="font-medium">{t("mockNewMatch")}</span>
+          <p className="text-[10px] text-muted-foreground">{t("mockSkillMatch")}</p>
         </div>
       </motion.div>
       <div className="flex gap-1.5">
@@ -243,11 +249,12 @@ function MockJobMatch() {
 }
 
 function MockInterview() {
+  const t = useTranslations("whyDifferent");
   return (
     <div className="space-y-2 text-xs">
       <div className="rounded-lg bg-cyan-500/5 px-2.5 py-2">
         <p className="font-medium text-cyan-700">
-          &ldquo;How would you optimize a dashboard with 50+ real-time data streams?&rdquo;
+          &ldquo;{t("mockQuestion")}&rdquo;
         </p>
       </div>
       <motion.div
@@ -262,13 +269,19 @@ function MockInterview() {
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="h-1.5 w-1.5 rounded-full bg-cyan-500"
         />
-        <span className="text-[10px] text-muted-foreground">Recording answer...</span>
+        <span className="text-[10px] text-muted-foreground">{t("mockRecording")}</span>
       </motion.div>
     </div>
   );
 }
 
 function MockScore() {
+  const t = useTranslations("whyDifferent");
+  const skills = [
+    { label: t("mockTechnical"), value: 96 },
+    { label: t("mockProblem"), value: 92 },
+  ];
+
   return (
     <div className="space-y-2.5 text-xs">
       <div className="flex items-center gap-3">
@@ -276,14 +289,11 @@ function MockScore() {
           JM
         </div>
         <div>
-          <p className="font-semibold">Your Score</p>
-          <p className="text-[10px] text-muted-foreground">Based on 5 responses</p>
+          <p className="font-semibold">{t("mockYourScore")}</p>
+          <p className="text-[10px] text-muted-foreground">{t("mockBasedOn")}</p>
         </div>
       </div>
-      {[
-        { label: "Technical depth", value: 96 },
-        { label: "Problem solving", value: 92 },
-      ].map((skill, i) => (
+      {skills.map((skill, i) => (
         <div key={skill.label}>
           <div className="mb-1 flex justify-between text-[10px]">
             <span className="text-muted-foreground">{skill.label}</span>
@@ -335,6 +345,8 @@ function AIHub() {
 /* ------------------------------------------------------------------ */
 
 export function WhyDifferent() {
+  const t = useTranslations("whyDifferent");
+
   return (
     <section id="why-different" className="relative overflow-hidden py-32">
       {/* Background */}
@@ -344,16 +356,14 @@ export function WhyDifferent() {
         {/* Header */}
         <FadeIn className="mb-20 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
-            Why this is different
+            {t("label")}
           </p>
           <h2 className="mx-auto max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Not another{" "}
-            <span className="text-primary">freelance marketplace</span>
+            {t("title")}{" "}
+            <span className="text-primary">{t("titleHighlight")}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground leading-relaxed">
-            Two perspectives, one intelligent platform. See how Matchlyst works
-            from both sides — AI connects clients and freelancers through
-            job-specific screening.
+            {t("subtitle")}
           </p>
         </FadeIn>
 
@@ -366,8 +376,8 @@ export function WhyDifferent() {
                 <Building2 className="h-5 w-5 text-blue-600" />
               </div>
               <div>
-                <h3 className="text-lg font-bold tracking-tight">Client Journey</h3>
-                <p className="text-xs text-muted-foreground">Hire with confidence</p>
+                <h3 className="text-lg font-bold tracking-tight">{t("clientJourney")}</h3>
+                <p className="text-xs text-muted-foreground">{t("clientSubtitle")}</p>
               </div>
             </FadeIn>
 
@@ -377,15 +387,15 @@ export function WhyDifferent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
             >
-              <ProcessStep step={1} icon={<ClipboardList className="h-4 w-4" />} title="Post your job" accent="blue">
+              <ProcessStep step={1} icon={<ClipboardList className="h-4 w-4" />} title={t("clientStep1")} accent="blue" stepLabel={t("stepLabel")}>
                 <MockJobPost />
               </ProcessStep>
 
-              <ProcessStep step={2} icon={<Brain className="h-4 w-4" />} title="AI screens applicants" accent="violet">
+              <ProcessStep step={2} icon={<Brain className="h-4 w-4" />} title={t("clientStep2")} accent="violet" stepLabel={t("stepLabel")}>
                 <MockAIScreening />
               </ProcessStep>
 
-              <ProcessStep step={3} icon={<Trophy className="h-4 w-4" />} title="Review ranked results" accent="amber" isLast>
+              <ProcessStep step={3} icon={<Trophy className="h-4 w-4" />} title={t("clientStep3")} accent="amber" isLast stepLabel={t("stepLabel")}>
                 <MockRankedResults />
               </ProcessStep>
             </motion.div>
@@ -404,7 +414,7 @@ export function WhyDifferent() {
               />
               <AIHub />
               <p className="mt-1 max-w-[80px] text-center text-[10px] font-medium uppercase tracking-widest text-primary/60">
-                Matchlyst AI
+                {t("aiLabel")}
               </p>
               <motion.div
                 initial={{ scaleY: 0 }}
@@ -433,8 +443,8 @@ export function WhyDifferent() {
                 <Code2 className="h-5 w-5 text-emerald-600" />
               </div>
               <div>
-                <h3 className="text-lg font-bold tracking-tight">Freelancer Journey</h3>
-                <p className="text-xs text-muted-foreground">Stand out on merit</p>
+                <h3 className="text-lg font-bold tracking-tight">{t("freelancerJourney")}</h3>
+                <p className="text-xs text-muted-foreground">{t("freelancerSubtitle")}</p>
               </div>
             </FadeIn>
 
@@ -444,15 +454,15 @@ export function WhyDifferent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
             >
-              <ProcessStep step={1} icon={<Send className="h-4 w-4" />} title="Get matched to jobs" accent="emerald">
+              <ProcessStep step={1} icon={<Send className="h-4 w-4" />} title={t("freelancerStep1")} accent="emerald" stepLabel={t("stepLabel")}>
                 <MockJobMatch />
               </ProcessStep>
 
-              <ProcessStep step={2} icon={<MessageSquareText className="h-4 w-4" />} title="Complete AI interview" accent="cyan">
+              <ProcessStep step={2} icon={<MessageSquareText className="h-4 w-4" />} title={t("freelancerStep2")} accent="cyan" stepLabel={t("stepLabel")}>
                 <MockInterview />
               </ProcessStep>
 
-              <ProcessStep step={3} icon={<BadgeCheck className="h-4 w-4" />} title="Stand out on real skill" accent="rose" isLast>
+              <ProcessStep step={3} icon={<BadgeCheck className="h-4 w-4" />} title={t("freelancerStep3")} accent="rose" isLast stepLabel={t("stepLabel")}>
                 <MockScore />
               </ProcessStep>
             </motion.div>
@@ -468,7 +478,7 @@ export function WhyDifferent() {
             <ArrowDown className="h-5 w-5 text-primary/40" />
           </motion.div>
           <p className="text-xs font-medium text-muted-foreground">
-            The result? <span className="text-primary">Perfect matches, every time.</span>
+            {t("resultText")} <span className="text-primary">{t("resultHighlight")}</span>
           </p>
         </FadeIn>
       </div>

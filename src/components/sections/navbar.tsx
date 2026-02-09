@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Navbar() {
+  const t = useTranslations("navbar");
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -23,19 +26,19 @@ export function Navbar() {
             href="#how-it-works"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            How it works
+            {t("howItWorks")}
           </a>
           <a
             href="#why-different"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            Why us
+            {t("whyUs")}
           </a>
           <a
             href="#waitlist"
             className="inline-flex h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
           >
-            Join Waitlist
+            {t("joinWaitlist")}
           </a>
         </div>
       </div>

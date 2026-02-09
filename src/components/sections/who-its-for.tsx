@@ -3,52 +3,52 @@
 import { motion } from "framer-motion";
 import { Building2, Code2 } from "lucide-react";
 import { FadeIn, StaggerContainer, itemVariants } from "@/components/animated/motion-wrapper";
-
-const personas = [
-  {
-    icon: Building2,
-    title: "For Clients",
-    description:
-      "Stop wasting time screening. Let AI do it — job by job. Get a curated list of freelancers who actually match your requirements.",
-    gradient: "from-blue-500 to-cyan-500",
-    bgGradient: "from-blue-500/5 to-cyan-500/5",
-    borderHover: "hover:border-blue-500/30",
-    features: [
-      "Custom screening per job",
-      "AI-ranked candidates",
-      "Zero spam guaranteed",
-    ],
-  },
-  {
-    icon: Code2,
-    title: "For Freelancers",
-    description:
-      "Be evaluated on real skill, not bidding wars. Showcase your true capability through intelligent, relevant assessments.",
-    gradient: "from-violet-500 to-purple-500",
-    bgGradient: "from-violet-500/5 to-purple-500/5",
-    borderHover: "hover:border-violet-500/30",
-    features: [
-      "Skill-based matching",
-      "Fair evaluation process",
-      "Higher quality clients",
-    ],
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function WhoItsFor() {
+  const t = useTranslations("whoItsFor");
+
+  const personas = [
+    {
+      icon: Building2,
+      title: t("clientTitle"),
+      description: t("clientDescription"),
+      gradient: "from-blue-500 to-cyan-500",
+      bgGradient: "from-blue-500/5 to-cyan-500/5",
+      borderHover: "hover:border-blue-500/30",
+      features: [
+        t("clientFeature1"),
+        t("clientFeature2"),
+        t("clientFeature3"),
+      ],
+    },
+    {
+      icon: Code2,
+      title: t("freelancerTitle"),
+      description: t("freelancerDescription"),
+      gradient: "from-violet-500 to-purple-500",
+      bgGradient: "from-violet-500/5 to-purple-500/5",
+      borderHover: "hover:border-violet-500/30",
+      features: [
+        t("freelancerFeature1"),
+        t("freelancerFeature2"),
+        t("freelancerFeature3"),
+      ],
+    },
+  ];
+
   return (
     <section className="relative py-32">
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
-            Who it&apos;s for
+            {t("label")}
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Built for <span className="text-primary">both sides</span>
+            {t("title")} <span className="text-primary">{t("titleHighlight")}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Whether you&apos;re hiring or freelancing, Matchlyst levels the playing
-            field with AI.
+            {t("subtitle")}
           </p>
         </FadeIn>
 

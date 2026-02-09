@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { AnimatedGradientBg } from "@/components/animated/animated-gradient-bg";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations("hero");
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
       <AnimatedGradientBg />
@@ -21,7 +24,7 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
           </span>
-          Early access opening soon
+          {t("badge")}
         </motion.div>
 
         {/* Headline */}
@@ -31,9 +34,9 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="mx-auto flex max-w-4xl flex-col text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
         >
-          <span>Hire smarter.</span>
+          <span>{t("headlineTop")}</span>
           <span className="bg-gradient-to-r from-primary via-purple-500 to-violet-600 bg-clip-text text-transparent">
-            Get discovered faster.
+            {t("headlineBottom")}
           </span>
         </motion.h1>
 
@@ -44,8 +47,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
         >
-          An AI-powered platform that generates job-specific interviews and
-          ranks freelancers based on real capability — not spam.
+          {t("subheadline")}
         </motion.p>
 
         {/* CTAs */}
@@ -62,7 +64,7 @@ export function Hero() {
             className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 transition-opacity group-hover:opacity-100" />
-            Join the Waitlist
+            {t("ctaWaitlist")}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <a
@@ -70,7 +72,7 @@ export function Hero() {
             className="inline-flex h-12 items-center gap-2 rounded-full border border-border bg-background/50 px-6 text-sm font-medium text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/30 hover:text-foreground"
           >
             <ChevronDown className="h-4 w-4" />
-            How it works
+            {t("ctaHowItWorks")}
           </a>
         </motion.div>
 
@@ -83,17 +85,17 @@ export function Hero() {
         >
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
-            AI-driven screening
+            {t("statScreening")}
           </div>
           <div className="hidden h-4 w-px bg-border sm:block" />
           <div className="hidden items-center gap-2 sm:flex">
             <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-            Job-specific interviews
+            {t("statInterviews")}
           </div>
           <div className="hidden h-4 w-px bg-border sm:block" />
           <div className="hidden items-center gap-2 sm:flex">
             <div className="h-1.5 w-1.5 rounded-full bg-violet-500" />
-            Ranked results
+            {t("statResults")}
           </div>
         </motion.div>
       </div>

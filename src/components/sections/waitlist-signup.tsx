@@ -6,6 +6,7 @@ import { CheckCircle2, Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FadeIn } from "@/components/animated/motion-wrapper";
+import { useTranslations } from "next-intl";
 
 type Role = "client" | "freelancer" | "both";
 
@@ -15,6 +16,8 @@ interface FormErrors {
 }
 
 export function WaitlistSignup() {
+  const t = useTranslations("waitlist");
+
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<Role | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -28,12 +31,12 @@ export function WaitlistSignup() {
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
     if (!email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("errorEmailRequired");
     } else if (!validateEmail(email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t("errorEmailInvalid");
     }
     if (!role) {
-      newErrors.role = "Please select a role";
+      newErrors.role = t("errorRoleRequired");
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -53,14 +56,14 @@ export function WaitlistSignup() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Something went wrong");
+        throw new Error(data.error || t("errorGeneric"));
       }
 
       setIsSuccess(true);
     } catch (err) {
       setErrors({
         email:
-          err instanceof Error ? err.message : "Something went wrong. Try again.",
+          err instanceof Error ? err.message : t("errorGeneric"),
       });
     } finally {
       setIsSubmitting(false);
@@ -68,9 +71,9 @@ export function WaitlistSignup() {
   };
 
   const roles: { value: Role; label: string }[] = [
-    { value: "client", label: "Client" },
-    { value: "freelancer", label: "Freelancer" },
-    { value: "both", label: "Both" },
+    { value: "client", label: t("roleClient") },
+    { value: "freelancer", label: t("roleFreelancer") },
+    { value: "both", label: t("roleBoth") },
   ];
 
   return (
@@ -81,14 +84,13 @@ export function WaitlistSignup() {
       <div className="relative mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
-            Get early access
+            {t("label")}
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Join the <span className="text-primary">waitlist</span>
+            {t("title")} <span className="text-primary">{t("titleHighlight")}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Be the first to experience a new way to hire. Limited spots
-            available for early adopters.
+            {t("subtitle")}
           </p>
         </FadeIn>
 
@@ -116,9 +118,9 @@ export function WaitlistSignup() {
                   >
                     <CheckCircle2 className="h-8 w-8 text-green-600" />
                   </motion.div>
-                  <h3 className="text-xl font-bold">You&apos;re on the list!</h3>
+                  <h3 className="text-xl font-bold">{t("successTitle")}</h3>
                   <p className="mt-2 text-muted-foreground">
-                    We&apos;ll be in touch soon with early access details.
+                    {t("successMessage")}
                   </p>
                 </motion.div>
               ) : (
@@ -136,12 +138,12 @@ export function WaitlistSignup() {
                       htmlFor="email"
                       className="mb-2 block text-sm font-medium"
                     >
-                      Email address
+                      {t("emailLabel")}
                     </label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder={t("emailPlaceholder")}
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -170,7 +172,7 @@ export function WaitlistSignup() {
                   {/* Role selector */}
                   <div className="mt-5">
                     <label className="mb-2 block text-sm font-medium">
-                      I&apos;m a...
+                      {t("roleLabel")}
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {roles.map((r) => (
@@ -219,7 +221,7 @@ export function WaitlistSignup() {
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
                         <>
-                          Join the Waitlist
+                          {t("submitButton")}
                           <ArrowRight className="ml-1 h-4 w-4" />
                         </>
                       )}
@@ -227,7 +229,7 @@ export function WaitlistSignup() {
                   </motion.div>
 
                   <p className="mt-4 text-center text-xs text-muted-foreground">
-                    No spam, ever. Unsubscribe at any time.
+                    {t("disclaimer")}
                   </p>
                 </motion.form>
               )}

@@ -3,52 +3,51 @@
 import { motion } from "framer-motion";
 import { ClipboardList, Brain, Trophy } from "lucide-react";
 import { FadeIn, StaggerContainer, itemVariants } from "@/components/animated/motion-wrapper";
-
-const steps = [
-  {
-    icon: ClipboardList,
-    title: "Post your job",
-    description:
-      "Describe the role you need filled. Our system captures the nuances that matter.",
-    gradient: "from-blue-500/10 to-cyan-500/10",
-    iconColor: "text-blue-600",
-    number: "01",
-  },
-  {
-    icon: Brain,
-    title: "AI generates screening questions",
-    description:
-      "Our AI crafts job-specific interview questions tailored to your exact requirements.",
-    gradient: "from-violet-500/10 to-purple-500/10",
-    iconColor: "text-violet-600",
-    number: "02",
-  },
-  {
-    icon: Trophy,
-    title: "Get ranked freelancers",
-    description:
-      "Receive a ranked list of candidates scored on real capability. No noise, no spam.",
-    gradient: "from-amber-500/10 to-orange-500/10",
-    iconColor: "text-amber-600",
-    number: "03",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function HowItWorks() {
+  const t = useTranslations("howItWorks");
+
+  const steps = [
+    {
+      icon: ClipboardList,
+      titleKey: "step1Title" as const,
+      descriptionKey: "step1Description" as const,
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconColor: "text-blue-600",
+      number: "01",
+    },
+    {
+      icon: Brain,
+      titleKey: "step2Title" as const,
+      descriptionKey: "step2Description" as const,
+      gradient: "from-violet-500/10 to-purple-500/10",
+      iconColor: "text-violet-600",
+      number: "02",
+    },
+    {
+      icon: Trophy,
+      titleKey: "step3Title" as const,
+      descriptionKey: "step3Description" as const,
+      gradient: "from-amber-500/10 to-orange-500/10",
+      iconColor: "text-amber-600",
+      number: "03",
+    },
+  ];
+
   return (
     <section id="how-it-works" className="relative py-32">
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
-            How it works
+            {t("label")}
           </p>
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Three steps to{" "}
-            <span className="text-primary">better hiring</span>
+            {t("title")}{" "}
+            <span className="text-primary">{t("titleHighlight")}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            A streamlined process that replaces weeks of screening with
-            intelligent, automated evaluation.
+            {t("subtitle")}
           </p>
         </FadeIn>
 
@@ -72,7 +71,7 @@ export function HowItWorks() {
                 {/* Step number */}
                 <div className="relative">
                   <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/40">
-                    Step {step.number}
+                    {t("stepLabel")} {step.number}
                   </span>
                 </div>
 
@@ -89,10 +88,10 @@ export function HowItWorks() {
 
                 {/* Content */}
                 <h3 className="relative mt-6 text-xl font-semibold tracking-tight">
-                  {step.title}
+                  {t(step.titleKey)}
                 </h3>
                 <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {step.description}
+                  {t(step.descriptionKey)}
                 </p>
 
                 {/* Connector line (hidden on last) */}

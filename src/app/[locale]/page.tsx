@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
@@ -7,31 +8,31 @@ import { WaitlistSignup } from "@/components/sections/waitlist-signup";
 import { SocialProof } from "@/components/sections/social-proof";
 import { Footer } from "@/components/sections/footer";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Matchlyst",
-  url: "https://www.matchlyst.com",
-  description:
-    "An AI-powered platform that generates job-specific interviews and ranks freelancers based on real capability.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://www.matchlyst.com/?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
+export default async function Home() {
+  const t = await getTranslations("jsonLd");
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Matchlyst",
-  url: "https://www.matchlyst.com",
-  logo: "https://www.matchlyst.com/og-image.png",
-  description:
-    "Matchlyst helps clients hire freelancers using AI-generated, job-specific interviews. No generic vetting. No spam applications.",
-};
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Matchlyst",
+    url: "https://www.matchlyst.com",
+    description: t("websiteDescription"),
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.matchlyst.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
 
-export default function Home() {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Matchlyst",
+    url: "https://www.matchlyst.com",
+    logo: "https://www.matchlyst.com/og-image.png",
+    description: t("organizationDescription"),
+  };
+
   return (
     <>
       <script

@@ -3,26 +3,29 @@
 import { motion } from "framer-motion";
 import { Zap, Shield, Globe } from "lucide-react";
 import { FadeIn, StaggerContainer, itemVariants } from "@/components/animated/motion-wrapper";
-
-const trust = [
-  {
-    icon: Zap,
-    title: "Built by independent founders",
-    description: "Crafted by people who understand the hiring pain first-hand.",
-  },
-  {
-    icon: Shield,
-    title: "Privacy-first approach",
-    description: "Your data is yours. We only use it to match you better.",
-  },
-  {
-    icon: Globe,
-    title: "Early access opening soon",
-    description: "Be among the first to shape the future of freelance hiring.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function SocialProof() {
+  const t = useTranslations("socialProof");
+
+  const trust = [
+    {
+      icon: Zap,
+      title: t("item1Title"),
+      description: t("item1Description"),
+    },
+    {
+      icon: Shield,
+      title: t("item2Title"),
+      description: t("item2Description"),
+    },
+    {
+      icon: Globe,
+      title: t("item3Title"),
+      description: t("item3Description"),
+    },
+  ];
+
   return (
     <section className="relative py-24">
       <div className="mx-auto max-w-6xl px-6">
@@ -30,7 +33,7 @@ export function SocialProof() {
         <div className="mb-16 flex items-center gap-4">
           <div className="h-px flex-1 bg-border" />
           <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Why trust us
+            {t("dividerLabel")}
           </span>
           <div className="h-px flex-1 bg-border" />
         </div>

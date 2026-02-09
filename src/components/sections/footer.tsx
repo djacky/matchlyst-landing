@@ -3,14 +3,12 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { FadeIn } from "@/components/animated/motion-wrapper";
-
-const links = [
-  { label: "About", href: "#" },
-  { label: "Contact", href: "#" },
-  { label: "Privacy", href: "#" },
-];
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <FadeIn>
       <footer className="border-t border-border/50 py-12">
@@ -32,20 +30,29 @@ export function Footer() {
 
             {/* Links */}
             <nav className="flex items-center gap-6">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              ))}
+              <a
+                href="#"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("about")}
+              </a>
+              <a
+                href="https://www.linkedin.com/company/matchlyst"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("contact")}
+              </a>
+              <Link
+                href="/privacy"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("privacy")}
+              </Link>
             </nav>
 
             {/* Copyright */}
             <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Matchlyst. All rights reserved.
+              &copy; {new Date().getFullYear()} {t("copyright")}
             </p>
           </div>
         </div>
