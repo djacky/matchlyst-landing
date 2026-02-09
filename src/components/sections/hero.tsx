@@ -29,11 +29,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mx-auto max-w-4xl text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
+          className="mx-auto flex max-w-4xl flex-col text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
         >
-          Hire smarter.{" "}
+          <span>Hire smarter.</span>
           <span className="bg-gradient-to-r from-primary via-purple-500 to-violet-600 bg-clip-text text-transparent">
-          Get discovered faster.
+            Get discovered faster.
           </span>
         </motion.h1>
 
