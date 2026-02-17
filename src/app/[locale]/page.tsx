@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
+import { ProductSimulation } from "@/components/sections/product-simulation";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { WhyDifferent } from "@/components/sections/why-different";
 import { WhoItsFor } from "@/components/sections/who-its-for";
@@ -46,6 +47,7 @@ export default async function Home() {
       <main className="relative min-h-screen overflow-hidden">
         <Navbar />
         <Hero />
+        <ProductSimulation />
         <HowItWorks />
         <WhyDifferent />
         <WhoItsFor />

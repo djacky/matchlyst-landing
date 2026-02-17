@@ -81,6 +81,20 @@ export function WaitlistSignup() {
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.03] to-transparent" />
 
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-20 top-1/4 h-72 w-72 rounded-full bg-primary/[0.06] blur-3xl"
+        />
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -right-20 bottom-1/4 h-72 w-72 rounded-full bg-violet-500/[0.06] blur-3xl"
+        />
+      </div>
+
       <div className="relative mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
@@ -96,6 +110,9 @@ export function WaitlistSignup() {
 
         <FadeIn delay={0.2}>
           <div className="mx-auto mt-12 max-w-md">
+            {/* Glow ring */}
+            <div className="glow-ring pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-3xl bg-gradient-to-r from-primary/20 via-violet-500/20 to-purple-500/20 blur-xl" />
+
             <AnimatePresence mode="wait">
               {isSuccess ? (
                 <motion.div

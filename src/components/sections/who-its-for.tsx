@@ -39,6 +39,11 @@ export function WhoItsFor() {
 
   return (
     <section className="relative py-32">
+      {/* Radial gradient glow */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.04] blur-3xl" />
+      </div>
+
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">

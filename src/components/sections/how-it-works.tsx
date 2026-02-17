@@ -36,7 +36,11 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="relative py-32">
+    <section className="relative py-32">
+      {/* Dot grid background */}
+      <div className="dot-grid absolute inset-0 -z-10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-transparent to-background" />
+
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn className="text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
