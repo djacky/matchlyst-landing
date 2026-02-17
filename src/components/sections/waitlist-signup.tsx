@@ -255,8 +255,8 @@ export function WaitlistSignup() {
                         </span>
                       </div>
                       <p className="mb-4 text-xs text-muted-foreground">
-                        Share your link — each signup bumps you closer to the
-                        front.
+                        Share your link — reach a referral tier and jump ahead
+                        of everyone below it.
                       </p>
 
                       {/* Copy link box */}

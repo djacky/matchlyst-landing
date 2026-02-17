@@ -8,6 +8,7 @@ import {
   Gift,
   Trophy,
   ArrowLeft,
+  ArrowUp,
   Loader2,
   Crown,
   Star,
@@ -24,6 +25,7 @@ interface StatusData {
   tier: string;
   next_tier: string | null;
   referrals_to_next: number;
+  jump_to_position: number | null;
   masked_email: string;
 }
 
@@ -140,8 +142,14 @@ export default function WaitlistStatusPage({
   const currentTier = TIERS.find((t) => t.key === data.tier) || TIERS[0];
   const TierIcon = currentTier.icon;
 
-  // Progress within the overall tier system (0 to 25)
   const progressPercent = Math.min(100, (data.referral_count / 25) * 100);
+
+  // Jump message logic
+  const showJumpMessage =
+    data.next_tier &&
+    data.referrals_to_next > 0 &&
+    data.jump_to_position !== null &&
+    data.jump_to_position < data.position;
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-16">
@@ -193,6 +201,30 @@ export default function WaitlistStatusPage({
               out of {data.total.toLocaleString()} on the waitlist
             </p>
           </motion.div>
+
+          {/* Jump message */}
+          {showJumpMessage && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mb-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3.5 text-center"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <ArrowUp className="h-4 w-4 text-emerald-400" />
+                <p className="text-sm font-semibold text-emerald-400">
+                  Get just {data.referrals_to_next} more referral
+                  {data.referrals_to_next !== 1 ? "s" : ""} to jump to #
+                  {data.jump_to_position}!
+                </p>
+              </div>
+              <p className="mt-1 text-xs text-emerald-400/60">
+                That&apos;s a leap of{" "}
+                {(data.position - data.jump_to_position!).toLocaleString()}{" "}
+                spots
+              </p>
+            </motion.div>
+          )}
 
           {/* Current tier */}
           <div
@@ -265,8 +297,8 @@ export default function WaitlistStatusPage({
               </span>
             </div>
             <p className="mb-4 text-xs text-muted-foreground">
-              Each person who signs up through your link moves you one spot
-              closer to the front.
+              Reach the next referral tier and jump ahead of everyone below it —
+              the more you share, the bigger the leap.
             </p>
 
             <div className="flex items-center gap-2">

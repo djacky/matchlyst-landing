@@ -61,7 +61,7 @@ export async function sendWelcomeEmail({
           Move up the list
         </p>
         <p style="margin:0 0 16px;font-size:14px;color:#a1a1aa;line-height:1.5;">
-          Share your unique link. Each signup moves you closer to the front.
+          Share your unique link. Hit a referral tier and jump ahead of everyone below it.
         </p>
 
         <div style="background:#27272a;border-radius:8px;padding:12px 16px;margin-bottom:16px;word-break:break-all;">
