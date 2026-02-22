@@ -49,7 +49,7 @@ export default async function Home() {
         <Hero />
         <ProductSimulation />
         <HowItWorks />
-        <WhyDifferent />
+        {/* <WhyDifferent /> */}
         <WhoItsFor />
         <WaitlistSignup />
         <SocialProof />

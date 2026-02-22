@@ -28,12 +28,13 @@ export function Navbar() {
           >
             {t("howItWorks")}
           </a>
-          <a
+          {/* @TODO: Add why us back in */}
+          {/* <a
             href="#why-different"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             {t("whyUs")}
-          </a>
+          </a> */}
           <a
             href="#waitlist"
             className="inline-flex h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
