@@ -181,6 +181,44 @@
     "websiteDescription": "An AI-powered platform that generates job-specific interviews and ranks freelancers based on real capability.",
     "organizationDescription": "Matchlyst helps clients hire freelancers using AI-generated, job-specific interviews. No generic vetting. No spam applications."
   },
+  "waitlistStatus": {
+    "loading": "Loading your status…",
+
+    "notFoundTitle": "Waitlist entry not found",
+    "notFoundDescription": "This link may be invalid or expired. Want to join the waitlist instead?",
+    "notFoundJoinCta": "Join the Waitlist",
+    "backToHome": "Back to Matchlyst",
+
+    "headerWaitlist": "Waitlist",
+    "yourPosition": "Your position",
+    "outOf": "out of {total} on the waitlist",
+    "aheadOf": "You're ahead of {percent}% of the waitlist",
+
+    "jumpMessage": "Get {count} more referral(s) to jump to #{position}!",
+    "jumpLeap": "That's a leap of {spots} spots",
+
+    "referralCount": "{count, plural, =1 {1 referral} other {# referrals}}",
+    "moreToNext": "{count} more to next tier",
+
+    "tier_standard_label": "Standard",
+    "tier_priority_label": "Priority Access",
+    "tier_premium_label": "Premium",
+    "tier_founding_member_label": "Founding Member",
+
+    "tier_priority_reward": "Get into the beta weeks before everyone else",
+    "tier_premium_reward": "Full premium plan, free for 3 months",
+    "tier_founding_member_reward": "Lifetime 30% discount + Founding Member badge + roadmap input",
+
+    "shareTitle": "Share to move up",
+    "shareDescription": "Reach the next referral tier and jump ahead of everyone below it — the more you share, the bigger the leap.",
+    "shareText": "I just joined the Matchlyst waitlist — a platform that screens freelancers with job-specific interviews. Check it out:",
+    "shareVia": "Share via",
+    "copy": "Copy",
+    "copied": "Copied",
+
+    "tierBreakdownTitle": "Referral rewards",
+    "referralsNeeded": "{count} referrals"
+  },
   "privacy": {
     "metaTitle": "Privacy Policy — Matchlyst",
     "metaDescription": "Learn how Matchlyst collects, uses, and protects your information.",

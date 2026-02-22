@@ -181,6 +181,44 @@
     "websiteDescription": "Una piattaforma con IA che genera colloqui specifici per ogni lavoro e classifica i freelancer in base alla capacità reale.",
     "organizationDescription": "Matchlyst aiuta i clienti ad assumere freelancer tramite colloqui specifici generati dall'IA. Nessuna valutazione generica. Nessuna candidatura spam."
   },
+  "waitlistStatus": {
+    "loading": "Caricamento del tuo stato…",
+
+    "notFoundTitle": "Voce lista d'attesa non trovata",
+    "notFoundDescription": "Questo link potrebbe essere non valido o scaduto. Vuoi iscriverti alla lista d'attesa?",
+    "notFoundJoinCta": "Iscriviti alla lista d'attesa",
+    "backToHome": "Torna a Matchlyst",
+
+    "headerWaitlist": "Lista d'attesa",
+    "yourPosition": "La tua posizione",
+    "outOf": "su {total} nella lista d'attesa",
+    "aheadOf": "Sei davanti al {percent}% della lista",
+
+    "jumpMessage": "Ottieni altri {count} referral per saltare al #{position}!",
+    "jumpLeap": "È un salto di {spots} posizioni",
+
+    "referralCount": "{count, plural, =1 {1 referral} other {# referral}}",
+    "moreToNext": "{count} in più per il livello successivo",
+
+    "tier_standard_label": "Standard",
+    "tier_priority_label": "Accesso prioritario",
+    "tier_premium_label": "Premium",
+    "tier_founding_member_label": "Membro fondatore",
+
+    "tier_priority_reward": "Accedi alla beta settimane prima di tutti",
+    "tier_premium_reward": "Piano premium completo, gratis per 3 mesi",
+    "tier_founding_member_reward": "Sconto del 30% a vita + badge Membro Fondatore + partecipazione alla roadmap",
+
+    "shareTitle": "Condividi per salire",
+    "shareDescription": "Raggiungi il prossimo livello di referral e salta davanti a tutti quelli sotto — più condividi, più grande sarà il salto.",
+    "shareText": "Mi sono appena iscritto alla lista d'attesa di Matchlyst — una piattaforma che valuta i freelancer con colloqui specifici. Dai un'occhiata:",
+    "shareVia": "Condividi via",
+    "copy": "Copia",
+    "copied": "Copiato",
+
+    "tierBreakdownTitle": "Ricompense referral",
+    "referralsNeeded": "{count} referral"
+  },
   "privacy": {
     "metaTitle": "Informativa sulla Privacy — Matchlyst",
     "metaDescription": "Scopri come Matchlyst raccoglie, utilizza e protegge le tue informazioni.",
