@@ -18,6 +18,7 @@ import {
   User,
   Star,
   MessageSquare,
+  TrendingUp,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -156,10 +157,9 @@ export function ProductSimulation() {
   const interviewAnswers = [t("a1Short"), t("a2Short"), t("a3Short")];
 
   const skills = [
-    { label: t("skillTechnical"), score: 94 },
-    { label: t("skillProblem"), score: 88 },
-    { label: t("skillComm"), score: 91 },
-    { label: t("skillArch"), score: 86 },
+    { label: t("skillCompetence"), score: 94 },
+    { label: t("skillGenuineness"), score: 91 },
+    { label: t("skillFocus"), score: 97 },
   ];
 
   const clearTimeouts = useCallback(() => {
@@ -633,7 +633,7 @@ export function ProductSimulation() {
 
                     {/* Candidate + overall score */}
                     <div className="mb-6 flex items-center gap-5 rounded-xl border border-border/50 bg-muted/20 p-5">
-                      <ScoreRing score={94} delay={0.2} />
+                      <ScoreRing score={92} delay={0.2} />
                       <div className="flex-1">
                         <p className="text-base font-bold text-foreground">
                           {t("candidateName")}
@@ -649,6 +649,29 @@ export function ProductSimulation() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Predicted delivery success */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="mb-6 flex items-center justify-between rounded-xl border border-green-500/30 bg-green-500/5 px-5 py-3"
+                    >
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="h-4 w-4 text-green-600" />
+                        <span className="text-sm font-semibold text-foreground">
+                          {t("predictedSuccess")}
+                        </span>
+                      </div>
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+                        className="text-lg font-bold text-green-600"
+                      >
+                        {t("predictedSuccessScore")}
+                      </motion.span>
+                    </motion.div>
 
                     {/* Skill breakdown */}
                     <div className="space-y-3">

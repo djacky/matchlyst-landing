@@ -16,18 +16,14 @@ import { Input } from "@/components/ui/input";
 import { FadeIn } from "@/components/animated/motion-wrapper";
 import { useTranslations } from "next-intl";
 
-type Role = "client" | "freelancer" | "both";
-
 interface FormErrors {
   email?: string;
-  role?: string;
 }
 
 export function WaitlistSignup() {
   const t = useTranslations("waitlist");
 
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState<Role | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -67,9 +63,6 @@ export function WaitlistSignup() {
     } else if (!validateEmail(email)) {
       newErrors.email = t("errorEmailInvalid");
     }
-    if (!role) {
-      newErrors.role = t("errorRoleRequired");
-    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -83,7 +76,7 @@ export function WaitlistSignup() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, role, ref: refCode }),
+        body: JSON.stringify({ email, role: "client", ref: refCode }),
       });
 
       const data = await res.json();
@@ -136,12 +129,6 @@ export function WaitlistSignup() {
       setTimeout(() => setCopied(false), 2000);
     }
   };
-
-  const roles: { value: Role; label: string }[] = [
-    { value: "client", label: t("roleClient") },
-    { value: "freelancer", label: t("roleFreelancer") },
-    { value: "both", label: t("roleBoth") },
-  ];
 
   return (
     <section id="waitlist" className="relative py-32">
@@ -379,47 +366,6 @@ export function WaitlistSignup() {
                           className="mt-1.5 text-xs text-red-500"
                         >
                           {errors.email}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Role selector */}
-                  <div className="mt-5">
-                    <label className="mb-2 block text-sm font-medium">
-                      {t("roleLabel")}
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {roles.map((r) => (
-                        <motion.button
-                          key={r.value}
-                          type="button"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => {
-                            setRole(r.value);
-                            if (errors.role)
-                              setErrors({ ...errors, role: undefined });
-                          }}
-                          className={`rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
-                            role === r.value
-                              ? "border-primary bg-primary/10 text-primary"
-                              : "border-border/50 bg-background text-muted-foreground hover:border-primary/30 hover:text-foreground"
-                          }`}
-                        >
-                          {r.label}
-                        </motion.button>
-                      ))}
-                    </div>
-                    <AnimatePresence>
-                      {errors.role && (
-                        <motion.p
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          className="mt-1.5 text-xs text-red-500"
-                        >
-                          {errors.role}
                         </motion.p>
                       )}
                     </AnimatePresence>

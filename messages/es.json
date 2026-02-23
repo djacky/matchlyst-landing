@@ -19,11 +19,17 @@
     "headlineTop": "Deja de adivinar.",
     "headlineBottom": "Empieza a saber.",
     "subheadline": "La primera plataforma de contratación que predice qué freelancer realmente cumplirá, no solo quién se desempeña bien en las entrevistas.",
-    "ctaWaitlist": "Únete a la lista de espera",
+    "ctaWaitlist": "Acceso anticipado",
     "ctaHowItWorks": "Cómo funciona",
-    "statScreening": "Selección por habilidades",
-    "statInterviews": "Entrevistas específicas",
-    "statResults": "Resultados clasificados"
+    "emailPlaceholder": "tu@email.com",
+    "emailDisclaimer": "Gratis para los primeros usuarios. Sin spam.",
+    "emailSubmitting": "Uniéndose...",
+    "emailSuccess": "¡Estás dentro! Revisa tu correo.",
+    "emailError": "Algo salió mal. Intenta de nuevo.",
+    "emailDuplicate": "¡Ya estás en la lista!",
+    "statPrediction": "Contratación predictiva",
+    "statInterviews": "Entrevistas con IA",
+    "statResults": "Predicción de entrega"
   },
   "howItWorks": {
     "label": "Cómo funciona",
@@ -150,16 +156,17 @@
     "a3Short": "Construyo seguridad de tipos end-to-end definiendo esquemas compartidos en Zod, generando routers tRPC desde esos esquemas, y usando helpers de inferencia para que el frontend tenga autocompletado y validación gratis.",
 
     "analyzingTitle": "Analizando respuestas",
-    "analyzingSubtitle": "Evaluando profundidad técnica, resolución de problemas y comunicación…",
+    "analyzingSubtitle": "Evaluando competencia, autenticidad y prediciendo éxito de entrega…",
 
     "resultsTitle": "Resultados de selección",
     "topMatch": "Mejor coincidencia",
     "resultsBasedOn": "Basado en 3 respuestas de entrevista",
-    "skillBreakdown": "Desglose de habilidades",
-    "skillTechnical": "Profundidad técnica",
-    "skillProblem": "Resolución de problemas",
-    "skillComm": "Comunicación",
-    "skillArch": "Arquitectura",
+    "predictedSuccess": "Éxito de entrega predicho",
+    "predictedSuccessScore": "92%",
+    "skillBreakdown": "Desglose de evaluación",
+    "skillCompetence": "Competencia",
+    "skillGenuineness": "Autenticidad",
+    "skillFocus": "Enfoque e integridad",
     "replayBtn": "Ejecutar simulación de nuevo"
   },
   "socialProof": {

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ClipboardList, Brain, Trophy } from "lucide-react";
+import { ClipboardList, Video, TrendingUp } from "lucide-react";
 import { FadeIn, StaggerContainer, itemVariants } from "@/components/animated/motion-wrapper";
 import { useTranslations } from "next-intl";
 
@@ -18,7 +18,7 @@ export function HowItWorks() {
       number: "01",
     },
     {
-      icon: Brain,
+      icon: Video,
       titleKey: "step2Title" as const,
       descriptionKey: "step2Description" as const,
       gradient: "from-violet-500/10 to-purple-500/10",
@@ -26,11 +26,11 @@ export function HowItWorks() {
       number: "02",
     },
     {
-      icon: Trophy,
+      icon: TrendingUp,
       titleKey: "step3Title" as const,
       descriptionKey: "step3Description" as const,
-      gradient: "from-amber-500/10 to-orange-500/10",
-      iconColor: "text-amber-600",
+      gradient: "from-green-500/10 to-emerald-500/10",
+      iconColor: "text-green-600",
       number: "03",
     },
   ];
