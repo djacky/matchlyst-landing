@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send welcome email (fire-and-forget, don't block response)
-    sendWelcomeEmail({
+    await sendWelcomeEmail({
       email: email.toLowerCase(),
       referralCode,
       position,
