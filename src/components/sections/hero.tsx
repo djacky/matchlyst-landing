@@ -290,7 +290,11 @@ function InlineEmailCapture() {
     <form onSubmit={handleSubmit} className="w-full max-w-md">
       <div className="flex h-13 items-center gap-2 rounded-full border border-border/80 bg-background/60 px-2 shadow-lg shadow-black/5 backdrop-blur-md transition-colors focus-within:border-primary/50">
         <input
+          id="hero-email"
+          name="email"
           type="email"
+          autoComplete="email"
+          inputMode="email"
           placeholder={t("emailPlaceholder")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
