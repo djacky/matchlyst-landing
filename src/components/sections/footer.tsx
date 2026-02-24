@@ -37,7 +37,7 @@ export function Footer() {
                 {t("about")}
               </a>
               <a
-                href="https://www.linkedin.com/company/matchlyst"
+                href="mailto:admin@disruptive-labs.io"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {t("contact")}
